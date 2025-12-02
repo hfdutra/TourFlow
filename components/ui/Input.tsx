@@ -6,7 +6,13 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ReactNode;
 }
 
-export const Input: React.FC<InputProps> = ({ label, error, icon, className = '', ...props }) => {
+export const Input: React.FC<InputProps> = ({
+  label,
+  error,
+  icon,
+  className = '',
+  ...props
+}) => {
   return (
     <div className={`w-full ${className}`}>
       {label && (
@@ -14,35 +20,42 @@ export const Input: React.FC<InputProps> = ({ label, error, icon, className = ''
           {label}
         </label>
       )}
-      <div className="relative rounded-md shadow-sm">
+      <div className="relative">
         {icon && (
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-500">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             {icon}
           </div>
         )}
         <input
           className={`
-            block w-full rounded-md border-gray-300 focus:ring-primary focus:border-primary sm:text-sm py-2 px-3 border
-            ${icon ? 'pl-10' : ''}
-            ${error ? 'border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500' : ''}
+            block w-full rounded-md border-gray-300 shadow-sm
+            focus:border-primary focus:ring-primary sm:text-sm
+            ${icon ? 'pl-10' : 'pl-3'}
+            ${error ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}
+            disabled:bg-gray-50 disabled:text-gray-500
+            py-2 border
           `}
           {...props}
         />
       </div>
-      {error && (
-        <p className="mt-1 text-sm text-red-600">{error}</p>
-      )}
+      {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
     </div>
   );
 };
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
+  options: { value: string; label: string }[];
   error?: string;
-  options: { value: string | number; label: string }[];
 }
 
-export const Select: React.FC<SelectProps> = ({ label, error, options, className = '', ...props }) => {
+export const Select: React.FC<SelectProps> = ({
+  label,
+  options,
+  error,
+  className = '',
+  ...props
+}) => {
   return (
     <div className={`w-full ${className}`}>
       {label && (
@@ -52,8 +65,10 @@ export const Select: React.FC<SelectProps> = ({ label, error, options, className
       )}
       <select
         className={`
-          block w-full rounded-md border-gray-300 focus:ring-primary focus:border-primary sm:text-sm py-2 px-3 border bg-white
-          ${error ? 'border-red-300 text-red-900 focus:ring-red-500 focus:border-red-500' : ''}
+          block w-full rounded-md border-gray-300 shadow-sm
+          focus:border-primary focus:ring-primary sm:text-sm
+          ${error ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}
+          py-2 border px-3
         `}
         {...props}
       >
@@ -63,9 +78,7 @@ export const Select: React.FC<SelectProps> = ({ label, error, options, className
           </option>
         ))}
       </select>
-      {error && (
-        <p className="mt-1 text-sm text-red-600">{error}</p>
-      )}
+      {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
     </div>
   );
 };
@@ -75,7 +88,12 @@ interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement
   error?: string;
 }
 
-export const TextArea: React.FC<TextAreaProps> = ({ label, error, className = '', ...props }) => {
+export const TextArea: React.FC<TextAreaProps> = ({
+  label,
+  error,
+  className = '',
+  ...props
+}) => {
   return (
     <div className={`w-full ${className}`}>
       {label && (
@@ -85,14 +103,14 @@ export const TextArea: React.FC<TextAreaProps> = ({ label, error, className = ''
       )}
       <textarea
         className={`
-          block w-full rounded-md border-gray-300 focus:ring-primary focus:border-primary sm:text-sm py-2 px-3 border
-          ${error ? 'border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500' : ''}
+          block w-full rounded-md border-gray-300 shadow-sm
+          focus:border-primary focus:ring-primary sm:text-sm
+          ${error ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}
+          py-2 border px-3
         `}
         {...props}
       />
-      {error && (
-        <p className="mt-1 text-sm text-red-600">{error}</p>
-      )}
+      {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
     </div>
   );
 };
