@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard/
+Disallow: /agent/
+Disallow: /api/
+
+Sitemap: https://tourflow.pt/sitemap.xml
