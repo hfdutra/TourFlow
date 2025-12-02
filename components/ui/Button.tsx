@@ -1,4 +1,10 @@
 import React from 'react';
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
@@ -18,8 +24,8 @@ export const Button: React.FC<ButtonProps> = ({
   const variants = {
     primary: "bg-primary text-white hover:bg-primary-hover shadow-sm",
     secondary: "bg-secondary text-white hover:bg-emerald-600 shadow-sm",
-    outline: "border border-border bg-white text-text-primary hover:bg-gray-50",
-    ghost: "hover:bg-gray-100 text-text-secondary hover:text-text-primary",
+    outline: "border border-gray-200 bg-white text-gray-900 hover:bg-gray-50",
+    ghost: "hover:bg-gray-100 text-gray-600 hover:text-gray-900",
     danger: "bg-danger text-white hover:bg-red-600 shadow-sm"
   };
 
@@ -31,7 +37,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button 
-      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+      className={cn(baseStyles, variants[variant], sizes[size], className)}
       {...props}
     >
       {children}
